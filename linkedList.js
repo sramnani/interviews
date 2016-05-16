@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 function LinkedList(){
     this.head = null;
@@ -85,27 +84,46 @@ LinkedList.prototype.count = function(){
     return count;
 }
 function kthFromEnd(sll, k){
-  if(k <=0){
-      return;
-  }
-  var kthNode;
-  var current = sll.head;
-  var i = 1;
-  while(current){
-      if(i === k){
-          kthNode = sll.head;
-      }
-      else {
-          if(i-k >0){
-              kthNode = kthNode.next;
-          }
-      }
-      i ++;
-      current = current.next;
-  }
+    if(k <=0){
+        return;
+    }
+    var kthNode;
+    var current = sll.head;
+    var i = 1;
+    while(current){
+        if(i === k){
+            kthNode = sll.head;
+        }
+        else {
+            if(i-k >0){
+                kthNode = kthNode.next;
+            }
+        }
+        i ++;
+        current = current.next;
+    }
 
-  return kthNode;
+    return kthNode;
 }
+
+function linkedListloop(sll){
+    var slowpointer,fastpointer;
+    slowpointer = sll.head;
+    fastpointer = sll.head;
+    while(slowpointer && fastpointer && fastpointer.next){
+        slowpointer = slowpointer.next;
+        fastpointer = fastpointer.next.next;
+
+        if(slowpointer === fastpointer){
+            return true;
+        }
+    }
+    return false;
+
+}
+
+
+
 var sll = new LinkedList();
 
 //push node
@@ -122,37 +140,5 @@ console.log(sll);
 console.log(sll.count());
 console.log(kthFromEnd(sll, 1));
 console.log(kthFromEnd(sll, 2));
-=======
-function LinkedList() {
-    this.head = null;
-}
-
-function Node(val) {
-    this.val = val;
-    this.next = null;
-}
-
-LinkedList.prototype.push = function(val) {
-    var current = this.head;
-
-    if (this.head === null) {
-        this.head = new Node(val);
-    } else {
-        while (current.next) {
-            current = current.next;
-            console.log(current);
-        }
-        current.next = new Node(val);
-    }
-}
-
-var nl = new LinkedList();
-nl.push(3);
-nl.push(4);
-nl.push(5);
-nl.push(6);
-
-
-console.log(nl);
->>>>>>> a7351065e77dad06be46c1e2e53e776bbfd1207d
-
+sll.head.next.next.next = sll.head.next.next
+console.log(linkedListloop(sll));
